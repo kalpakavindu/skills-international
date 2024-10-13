@@ -30,9 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentDataPopup));
             this.AppName = new System.Windows.Forms.Label();
-            this.LinkLogout = new System.Windows.Forms.LinkLabel();
-            this.LinkExit = new System.Windows.Forms.LinkLabel();
             this.RegistrationFormWrapper = new System.Windows.Forms.GroupBox();
+            this.BtnClear = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.BtnRegister = new System.Windows.Forms.Button();
@@ -64,7 +63,6 @@
             this.LabelAddress = new System.Windows.Forms.Label();
             this.InputRegNo = new System.Windows.Forms.ComboBox();
             this.LabelRegNo = new System.Windows.Forms.Label();
-            this.BtnClear = new System.Windows.Forms.Button();
             this.RegistrationFormWrapper.SuspendLayout();
             this.BasicDataWrapper.SuspendLayout();
             this.ParentDataWrapper.SuspendLayout();
@@ -80,27 +78,6 @@
             this.AppName.Size = new System.Drawing.Size(255, 31);
             this.AppName.TabIndex = 0;
             this.AppName.Text = "Skills International";
-            // 
-            // LinkLogout
-            // 
-            this.LinkLogout.AutoSize = true;
-            this.LinkLogout.Location = new System.Drawing.Point(11, 7);
-            this.LinkLogout.Name = "LinkLogout";
-            this.LinkLogout.Size = new System.Drawing.Size(48, 16);
-            this.LinkLogout.TabIndex = 1;
-            this.LinkLogout.TabStop = true;
-            this.LinkLogout.Text = "Logout";
-            // 
-            // LinkExit
-            // 
-            this.LinkExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LinkExit.AutoSize = true;
-            this.LinkExit.Location = new System.Drawing.Point(566, 625);
-            this.LinkExit.Name = "LinkExit";
-            this.LinkExit.Size = new System.Drawing.Size(28, 16);
-            this.LinkExit.TabIndex = 2;
-            this.LinkExit.TabStop = true;
-            this.LinkExit.Text = "Exit";
             // 
             // RegistrationFormWrapper
             // 
@@ -124,6 +101,16 @@
             this.RegistrationFormWrapper.TabIndex = 3;
             this.RegistrationFormWrapper.TabStop = false;
             this.RegistrationFormWrapper.Text = "Student Registration";
+            // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnClear.Location = new System.Drawing.Point(481, 549);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(75, 23);
+            this.BtnClear.TabIndex = 13;
+            this.BtnClear.Text = "Clear";
+            this.BtnClear.UseVisualStyleBackColor = true;
             // 
             // BtnDelete
             // 
@@ -350,9 +337,9 @@
             this.LabelParentName.AutoSize = true;
             this.LabelParentName.Location = new System.Drawing.Point(16, 29);
             this.LabelParentName.Name = "LabelParentName";
-            this.LabelParentName.Size = new System.Drawing.Size(58, 16);
+            this.LabelParentName.Size = new System.Drawing.Size(68, 16);
             this.LabelParentName.TabIndex = 0;
-            this.LabelParentName.Text = "Address";
+            this.LabelParentName.Text = "Full Name";
             // 
             // ContactDataWrapper
             // 
@@ -476,16 +463,6 @@
             this.LabelRegNo.TabIndex = 1;
             this.LabelRegNo.Text = "Reg No";
             // 
-            // BtnClear
-            // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnClear.Location = new System.Drawing.Point(481, 549);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(75, 23);
-            this.BtnClear.TabIndex = 13;
-            this.BtnClear.Text = "Clear";
-            this.BtnClear.UseVisualStyleBackColor = true;
-            // 
             // StudentDataPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -493,8 +470,6 @@
             this.ClientSize = new System.Drawing.Size(608, 648);
             this.Controls.Add(this.RegistrationFormWrapper);
             this.Controls.Add(this.AppName);
-            this.Controls.Add(this.LinkExit);
-            this.Controls.Add(this.LinkLogout);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -519,8 +494,6 @@
         #endregion
 
         private System.Windows.Forms.Label AppName;
-        private System.Windows.Forms.LinkLabel LinkLogout;
-        private System.Windows.Forms.LinkLabel LinkExit;
         private System.Windows.Forms.GroupBox RegistrationFormWrapper;
         private System.Windows.Forms.ComboBox InputRegNo;
         private System.Windows.Forms.Label LabelRegNo;
