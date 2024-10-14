@@ -164,6 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app_logo.ico" />
+    <None Include="Resources\visibility1.png" />
+    <None Include="Resources\visibility-off1.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

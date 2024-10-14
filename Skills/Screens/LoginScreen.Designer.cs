@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginScreen));
-            this.AppLogo = new System.Windows.Forms.PictureBox();
             this.AppName = new System.Windows.Forms.Label();
             this.LoginFormWrapper = new System.Windows.Forms.GroupBox();
+            this.BtnPasswordToggle = new System.Windows.Forms.PictureBox();
             this.BtnSubmit = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
             this.InputPassword = new System.Windows.Forms.TextBox();
@@ -39,22 +39,11 @@
             this.InputUsername = new System.Windows.Forms.TextBox();
             this.LabelUsername = new System.Windows.Forms.Label();
             this.BtnExit = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.AppLogo)).BeginInit();
+            this.AppLogo = new System.Windows.Forms.PictureBox();
             this.LoginFormWrapper.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnPasswordToggle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppLogo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // AppLogo
-            // 
-            this.AppLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AppLogo.BackgroundImage = global::Skills.Properties.Resources.app_logo;
-            this.AppLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.AppLogo.Location = new System.Drawing.Point(182, 18);
-            this.AppLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.AppLogo.Name = "AppLogo";
-            this.AppLogo.Size = new System.Drawing.Size(120, 84);
-            this.AppLogo.TabIndex = 0;
-            this.AppLogo.TabStop = false;
             // 
             // AppName
             // 
@@ -72,6 +61,7 @@
             // 
             this.LoginFormWrapper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoginFormWrapper.Controls.Add(this.BtnPasswordToggle);
             this.LoginFormWrapper.Controls.Add(this.BtnSubmit);
             this.LoginFormWrapper.Controls.Add(this.BtnClear);
             this.LoginFormWrapper.Controls.Add(this.InputPassword);
@@ -87,6 +77,19 @@
             this.LoginFormWrapper.TabStop = false;
             this.LoginFormWrapper.Text = "Login";
             // 
+            // BtnPasswordToggle
+            // 
+            this.BtnPasswordToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnPasswordToggle.BackgroundImage = global::Skills.Properties.Resources.visibility;
+            this.BtnPasswordToggle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnPasswordToggle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPasswordToggle.Location = new System.Drawing.Point(288, 86);
+            this.BtnPasswordToggle.Name = "BtnPasswordToggle";
+            this.BtnPasswordToggle.Size = new System.Drawing.Size(23, 22);
+            this.BtnPasswordToggle.TabIndex = 6;
+            this.BtnPasswordToggle.TabStop = false;
+            this.BtnPasswordToggle.Click += new System.EventHandler(this.BtnPasswordToggle_Click);
+            // 
             // BtnSubmit
             // 
             this.BtnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -97,6 +100,7 @@
             this.BtnSubmit.TabIndex = 5;
             this.BtnSubmit.Text = "Login";
             this.BtnSubmit.UseVisualStyleBackColor = true;
+            this.BtnSubmit.Click += new System.EventHandler(this.BtnSubmit_Click);
             // 
             // BtnClear
             // 
@@ -107,6 +111,7 @@
             this.BtnClear.TabIndex = 4;
             this.BtnClear.Text = "Clear";
             this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // InputPassword
             // 
@@ -117,8 +122,9 @@
             this.InputPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InputPassword.MaxLength = 50;
             this.InputPassword.Name = "InputPassword";
-            this.InputPassword.Size = new System.Drawing.Size(192, 22);
+            this.InputPassword.Size = new System.Drawing.Size(163, 22);
             this.InputPassword.TabIndex = 3;
+            this.InputPassword.UseSystemPasswordChar = true;
             // 
             // LabelPassword
             // 
@@ -160,6 +166,20 @@
             this.BtnExit.TabIndex = 6;
             this.BtnExit.Text = "Exit";
             this.BtnExit.UseVisualStyleBackColor = true;
+            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
+            // 
+            // AppLogo
+            // 
+            this.AppLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AppLogo.BackgroundImage = global::Skills.Properties.Resources.app_logo;
+            this.AppLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AppLogo.Location = new System.Drawing.Point(182, 18);
+            this.AppLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AppLogo.Name = "AppLogo";
+            this.AppLogo.Size = new System.Drawing.Size(120, 84);
+            this.AppLogo.TabIndex = 0;
+            this.AppLogo.TabStop = false;
             // 
             // LoginScreen
             // 
@@ -177,9 +197,10 @@
             this.MinimumSize = new System.Drawing.Size(500, 425);
             this.Name = "LoginScreen";
             this.Text = "Login - Skills International";
-            ((System.ComponentModel.ISupportInitialize)(this.AppLogo)).EndInit();
             this.LoginFormWrapper.ResumeLayout(false);
             this.LoginFormWrapper.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnPasswordToggle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -196,5 +217,6 @@
         private System.Windows.Forms.Button BtnSubmit;
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Button BtnExit;
+        private System.Windows.Forms.PictureBox BtnPasswordToggle;
     }
 }
