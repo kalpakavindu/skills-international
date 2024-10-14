@@ -15,6 +15,14 @@ namespace Skills.Panels
         public TeachersPanel()
         {
             InitializeComponent();
+            showBtns();
+        }
+
+        private void showBtns(Boolean selected = false)
+        {
+            BtnUpdate.Visible = selected;
+            BtnDelete.Visible = selected;
+            BtnAdd.Visible = !selected;
         }
     }
 }
