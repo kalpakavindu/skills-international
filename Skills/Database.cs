@@ -12,37 +12,37 @@ namespace Skills
     {
         private SqlConnection _connection;
         private String _connectionString;
+        private DataTable _dt;
+        private SqlDataAdapter _dap;
+        private SqlCommand _command;
 
         public Database()
         {
             // Assign connection string to this variable
-            _connectionString = @"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\data\\sqlfiles\\DB_Skills_CS.mdf;Integrated Security=True;Connect Timeout=30";
+            _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\data\sqlfiles\DB_Skills_CS.mdf;Integrated Security=True;Connect Timeout=30;";
             _connection = new SqlConnection(_connectionString);
+            _command = new SqlCommand();
+            _command.Connection = _connection;
         }
 
-        public int Set(String query)
+        public int SetData(String query)
         {
-            SqlCommand _command = new SqlCommand(query, _connection);
-
-            _command.Connection.Open();
-            int r = _command.ExecuteNonQuery();
-            _command.Connection.Close();
-
-            return r;
-        }
-        public DataTable Get(String query)
-        {
-            DataTable dt = new DataTable();
-            SqlCommand _command = new SqlCommand(query, _connection);
-
-            _command.CommandType = System.Data.CommandType.StoredProcedure;
-            _command.Connection.Open();
-            using (SqlDataReader reader = _command.ExecuteReader())
+            int cnt;
+            if(_connection.State == ConnectionState.Closed)
             {
-                dt.Load(reader);
+                _connection.Open();
             }
-
-            return dt;
+            _command.CommandText = query;
+            cnt = _command.ExecuteNonQuery();
+            _connection.Close();
+            return cnt;
+        }
+        public DataTable GetData(String query)
+        {
+            _dt = new DataTable();
+            _dap = new SqlDataAdapter(query, _connectionString);
+            _dap.Fill(_dt);
+            return _dt;
         }
     }
 
