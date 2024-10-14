@@ -38,6 +38,7 @@
             this.WrapperCountClasses = new System.Windows.Forms.Panel();
             this.CountClass = new System.Windows.Forms.Label();
             this.LabelClass = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.WrapperCountStudents.SuspendLayout();
             this.WrapperCountTeachers.SuspendLayout();
             this.WrapperCountClasses.SuspendLayout();
@@ -58,13 +59,14 @@
             this.WrapperCountStudents.BackColor = System.Drawing.Color.Wheat;
             this.WrapperCountStudents.Controls.Add(this.CountStudent);
             this.WrapperCountStudents.Controls.Add(this.LabelStudent);
-            this.WrapperCountStudents.Location = new System.Drawing.Point(154, 132);
+            this.WrapperCountStudents.Location = new System.Drawing.Point(155, 152);
             this.WrapperCountStudents.Name = "WrapperCountStudents";
             this.WrapperCountStudents.Size = new System.Drawing.Size(200, 116);
             this.WrapperCountStudents.TabIndex = 21;
             // 
             // CountStudent
             // 
+            this.CountStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CountStudent.AutoSize = true;
             this.CountStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountStudent.Location = new System.Drawing.Point(91, 57);
@@ -88,13 +90,14 @@
             this.WrapperCountTeachers.BackColor = System.Drawing.Color.LightGreen;
             this.WrapperCountTeachers.Controls.Add(this.CountTeacher);
             this.WrapperCountTeachers.Controls.Add(this.LabelTeacher);
-            this.WrapperCountTeachers.Location = new System.Drawing.Point(447, 132);
+            this.WrapperCountTeachers.Location = new System.Drawing.Point(448, 152);
             this.WrapperCountTeachers.Name = "WrapperCountTeachers";
             this.WrapperCountTeachers.Size = new System.Drawing.Size(200, 116);
             this.WrapperCountTeachers.TabIndex = 22;
             // 
             // CountTeacher
             // 
+            this.CountTeacher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CountTeacher.AutoSize = true;
             this.CountTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountTeacher.Location = new System.Drawing.Point(91, 57);
@@ -118,13 +121,14 @@
             this.WrapperCountClasses.BackColor = System.Drawing.Color.Violet;
             this.WrapperCountClasses.Controls.Add(this.CountClass);
             this.WrapperCountClasses.Controls.Add(this.LabelClass);
-            this.WrapperCountClasses.Location = new System.Drawing.Point(290, 286);
+            this.WrapperCountClasses.Location = new System.Drawing.Point(291, 306);
             this.WrapperCountClasses.Name = "WrapperCountClasses";
             this.WrapperCountClasses.Size = new System.Drawing.Size(200, 116);
             this.WrapperCountClasses.TabIndex = 23;
             // 
             // CountClass
             // 
+            this.CountClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CountClass.AutoSize = true;
             this.CountClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountClass.Location = new System.Drawing.Point(91, 57);
@@ -143,11 +147,21 @@
             this.LabelClass.TabIndex = 0;
             this.LabelClass.Text = "Total Classes";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(398, 16);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Welcome to the Skills International Learning Management System.";
+            // 
             // HomePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 551);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.WrapperCountClasses);
             this.Controls.Add(this.WrapperCountTeachers);
             this.Controls.Add(this.WrapperCountStudents);
@@ -180,5 +194,6 @@
         private System.Windows.Forms.Panel WrapperCountClasses;
         private System.Windows.Forms.Label CountClass;
         private System.Windows.Forms.Label LabelClass;
+        private System.Windows.Forms.Label label1;
     }
 }
