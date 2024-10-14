@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Skills.Popups;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -68,6 +69,18 @@ namespace Skills.Panels
             BtnUpdate.Visible = selected;
             BtnDelete.Visible = selected;
             BtnAdd.Visible = !selected;
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            ClassDataPopup classDataPopup = new ClassDataPopup();
+            classDataPopup.FormClosed += ClassDataPopup_FormClosed;
+            classDataPopup.ShowDialog();
+        }
+
+        private void ClassDataPopup_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loadData();
         }
     }
 }
