@@ -79,6 +79,7 @@ namespace Skills.Popups
                 }
                 else
                 {
+                    InputRegNo.Enabled = true;
                     // Get last Student RegNo
                     String query = "SELECT TOP 1 regNo FROM Student ORDER BY regNo DESC";
                     DataTable res = conn.GetData(query);

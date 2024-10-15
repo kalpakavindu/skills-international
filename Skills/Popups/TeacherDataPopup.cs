@@ -46,6 +46,7 @@ namespace Skills.Popups
 
                 if (!newUser)
                 {
+                    InputRegNo.Enabled = false;
                     String query = $"SELECT * FROM Teacher WHERE regNo={id}";
                     DataTable res = conn.GetData(query);
                     if (res.Rows.Count > 0)
@@ -81,6 +82,7 @@ namespace Skills.Popups
                 }
                 else
                 {
+                    InputRegNo.Enabled = true;
                     // Get last Student RegNo
                     String query = "SELECT TOP 1 regNo FROM Teacher ORDER BY regNo DESC";
                     DataTable res = conn.GetData(query);
@@ -216,6 +218,50 @@ namespace Skills.Popups
                 catch(Exception ex)
                 {
                     if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+                }
+            }
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            if (validateForm())
+            {
+                try
+                {
+                    String gender = "Male";
+                    if (InputGender1.Checked == true)
+                    {
+                        gender = "Female";
+                    }
+
+                    String query = "UPDATE Teacher SET firstName='{0}',lastName='{1}',dateOfBirth='{2}',gender='{3}',address='{4}',email='{5}',mobilePhone={6},nic='{7}',civilStatus='{8}' WHERE regNo={9}";
+
+                    query = String.Format(
+                        query,
+                        InputFirstName.Text,
+                        InputLastName.Text,
+                        InputDOB.Value.ToString("yyyy-MM-dd"),
+                        gender,
+                        InputAddress.Text,
+                        InputEmail.Text,
+                        InputMobilePhone.Text,
+                        InputNIC.Text,
+                        InputCivilStatus.Text,
+                        id
+                    );
+
+                    conn.SetData(query);
+                    if (MessageBox.Show("Record updated succesfully", "Update Teacher", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    if(MessageBox.Show(ex.Message,"Internal Error",MessageBoxButtons.OK,MessageBoxIcon.Error) == DialogResult.OK)
                     {
                         this.Close();
                     }
