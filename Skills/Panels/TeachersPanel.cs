@@ -52,7 +52,7 @@ namespace Skills.Panels
                         (String)r["nic"],
                         $"{(String)r["firstName"]} {(String)r["lastName"]}",
                         (String)r["gender"],
-                        ((DateTime)r["dateOfBirth"]).ToString("dd/MM/yyyy"),
+                        ((DateTime)r["dateOfBirth"]).ToString("yyyy-MM-dd"),
                         (String)r["civilStatus"],
                         (String)r["email"],
                         (String)r["address"],

@@ -46,17 +46,27 @@ namespace Skills.Panels
 
                 foreach(DataRow r in res.Rows)
                 {
-                    String q = $"SELECT name FROM Class WHERE id={(int)r["classId"]}";
-                    DataTable clData = conn.GetData(q);
+                    DataTable clData = new DataTable();
+                    if (r["classId"] != DBNull.Value)
+                    {
+                        String q = $"SELECT name FROM Class WHERE id={(int)r["classId"]}";
+                        clData = conn.GetData(q);
+                    }
+                    else
+                    {
+                        clData.Columns.Add("name", typeof(String));
+                        clData.Rows.Add("Not assigned");
+                    }
+
                     src.Rows.Add(
                         (int)r["regNo"],
                         $"{(String)r["firstName"]} {(String)r["lastName"]}",
                         (String)r["gender"],
-                        ((DateTime)r["dateOfBirth"]).ToString("dd/MM/yyyy"),
+                        ((DateTime)r["dateOfBirth"]).ToString("yyyy-MM-dd"),
                         (String)r["email"],
                         (String)r["address"],
                         (int)r["mobilePhone"],
-                        (int)r["homePone"],
+                        (int)r["homePhone"],
                         (String)r["parentName"],
                         (String)r["parentNic"],
                         (int)r["parentPhone"],

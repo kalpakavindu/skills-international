@@ -130,6 +130,7 @@
             this.BtnRegister.TabIndex = 10;
             this.BtnRegister.Text = "Register";
             this.BtnRegister.UseVisualStyleBackColor = true;
+            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
             // BasicDataWrapper
             // 

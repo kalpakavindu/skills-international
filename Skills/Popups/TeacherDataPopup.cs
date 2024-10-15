@@ -30,6 +30,12 @@ namespace Skills.Popups
             InputDOB.CustomFormat = "dd/MM/yyyy";
             InputDOB.MinDate = DateTime.Parse($"{currentYear - 60}/01/01");
             InputDOB.MaxDate = DateTime.Parse($"{currentYear - 22}/12/31");
+
+            // Set data to the CivilStatus input
+            InputCivilStatus.Items.Insert(0, "Single");
+            InputCivilStatus.Items.Insert(1, "Married");
+            InputCivilStatus.Items.Insert(2, "Divorced");
+            InputCivilStatus.SelectedIndex = 0;
         }
 
         private Boolean validateForm()
@@ -42,33 +48,64 @@ namespace Skills.Popups
                 }
             }
 
-            String validateDigitsRegex = @"/^\d+$/";
-            String validateEmailRegex = @"/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/";
+            String validateDigitRegex = @"^([0-9]*)$";
+            String validateContactRegex = @"^(94(7[0-9])[\d]{7}|0(7[0-9])[\d]{7}|011[\d]{7})$";
+            String validateEmailRegex = @"^(\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b)$";
 
-            Dictionary<String, String> mustBeDigits = new Dictionary<String, String>();
-            mustBeDigits.Add("Registration number", InputRegNo.Text);
-            mustBeDigits.Add("Contact number", InputMobilePhone.Text);
+            Dictionary<String, Dictionary<String, String>> data = new Dictionary<String, Dictionary<String, String>>();
+            data.Add(validateDigitRegex, new Dictionary<string, string>());
+            data.Add(validateContactRegex, new Dictionary<string, string>());
+            data.Add(validateEmailRegex, new Dictionary<string, string>());
+            data[validateDigitRegex].Add("Registration number", InputRegNo.Text);
+            data[validateContactRegex].Add("Mobile phone", InputMobilePhone.Text);
+            data[validateEmailRegex].Add("Email address", InputEmail.Text);
 
-            // Check digits
-            foreach (KeyValuePair<String, String> i in mustBeDigits)
+            // Validator
+            foreach (KeyValuePair<String, Dictionary<String, String>> i in data)
             {
-                if (!Regex.IsMatch(i.Value, validateDigitsRegex))
+                foreach (KeyValuePair<String, String> ii in i.Value)
                 {
-                    if (MessageBox.Show($"{i.Key} must be a valid integer", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                    String msg = "{0} must be a valid ";
+                    if (i.Key == validateContactRegex)
                     {
-                        return false;
+                        msg = msg + "contact number";
+                    }
+                    else if (i.Key == validateEmailRegex)
+                    {
+                        msg = msg + "email address";
+                    }
+                    else
+                    {
+                        msg = msg + "integer";
+                    }
+
+                    if (!Regex.IsMatch(ii.Value, i.Key))
+                    {
+                        msg = String.Format(msg, ii.Key);
+                        if (MessageBox.Show(msg, "Register Student", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
-            // Check Email
-            if (!Regex.IsMatch(InputEmail.Text, validateEmailRegex))
-            {
-                if (MessageBox.Show("Email adders is not valid", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
-                {
-                    return false;
-                }
-            }
             return true;
+        }
+
+        private void clearForm()
+        {
+            InputFirstName.Text = "";
+            InputLastName.Text = "";
+            InputAddress.Text = "";
+            InputMobilePhone.Text = "";
+            InputEmail.Text = "";
+            InputNIC.Text = "";
+            InputDOB.Value = InputDOB.MaxDate;
+            InputGender0.Checked = true;
+            InputGender1.Checked = false;
+            InputCivilStatus.SelectedIndex = 0;
+            setRegNo();
+            InputFirstName.Focus();
         }
 
         private void showBtns(Boolean edit = false)
@@ -110,6 +147,54 @@ namespace Skills.Popups
                 InputRegNo.Items.Insert(0, id);
             }
             InputRegNo.SelectedIndex = 0;
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            clearForm();
+        }
+
+        private void BtnRegister_Click(object sender, EventArgs e)
+        {
+            if (validateForm())
+            {
+                try 
+                {
+                    String gender = "Male";
+                    if (InputGender1.Checked == true)
+                    {
+                        gender = "Female";
+                    }
+
+                    String query = "INSERT INTO Teacher (regNo,firstName,lastName,dateOfBirth,gender,address,email,mobilePhone,nic,civilStatus) VALUES({0},'{1}','{2}','{3}','{4}','{5}','{6}',{7},'{8}','{9}')";
+                    query = String.Format(
+                        query,
+                        InputRegNo.Text,
+                        InputFirstName.Text,
+                        InputLastName.Text,
+                        InputDOB.Value.ToString("yyyy-MM-dd"),
+                        gender,
+                        InputAddress.Text,
+                        InputEmail.Text,
+                        InputMobilePhone.Text,
+                        InputNIC.Text,
+                        InputCivilStatus.Text
+                    );
+                    conn.SetData(query);
+
+                    if (MessageBox.Show("Record added successfully", "Register Teacher", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                    {
+                        Application.Exit();
+                    }
+                }
+            }
         }
     }
 }

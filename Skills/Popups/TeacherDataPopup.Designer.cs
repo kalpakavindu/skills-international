@@ -351,6 +351,7 @@
             this.BtnClear.TabIndex = 16;
             this.BtnClear.Text = "Clear";
             this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // BtnUpdate
             // 
@@ -371,6 +372,7 @@
             this.BtnRegister.TabIndex = 14;
             this.BtnRegister.Text = "Register";
             this.BtnRegister.UseVisualStyleBackColor = true;
+            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
             // AppName
             // 
