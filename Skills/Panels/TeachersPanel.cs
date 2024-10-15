@@ -14,12 +14,13 @@ namespace Skills.Panels
     public partial class TeachersPanel : Form
     {
         private Database conn;
+        private int selectedId;
 
         public TeachersPanel()
         {
             conn = new Database();
             InitializeComponent();
-            showBtns();
+            selectedId = -1;
             loadData();
         }
 
@@ -27,6 +28,7 @@ namespace Skills.Panels
         {
             try
             {
+                showBtns();
                 String query = "SELECT * FROM Teacher";
                 DataTable res = conn.GetData(query);
                 
@@ -39,7 +41,7 @@ namespace Skills.Panels
                 src.Columns.Add("Civil status",typeof(String));
                 src.Columns.Add("Email address",typeof(String));
                 src.Columns.Add("Home address",typeof(String));
-                src.Columns.Add("Mobile phone", typeof(int));
+                src.Columns.Add("Mobile phone", typeof(Int64));
                 src.Columns.Add("Classes", typeof(int));
 
                 foreach(DataRow r in res.Rows)
@@ -56,7 +58,7 @@ namespace Skills.Panels
                         (String)r["civilStatus"],
                         (String)r["email"],
                         (String)r["address"],
-                        (int)r["mobilePhone"],
+                        Convert.ToUInt64(r["mobilePhone"]),
                         clData.Rows.Count
                     );
                 }
@@ -73,11 +75,11 @@ namespace Skills.Panels
             
         }
 
-        private void showBtns(Boolean selected = false)
+        private void showBtns()
         {
-            BtnUpdate.Visible = selected;
-            BtnDelete.Visible = selected;
-            BtnAdd.Visible = !selected;
+            BtnUpdate.Visible = selectedId != -1;
+            BtnDelete.Visible = selectedId != -1;
+            BtnAdd.Visible = selectedId == -1;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -90,6 +92,43 @@ namespace Skills.Panels
         private void TeacherDataPopup_FormClosed(object sender, FormClosedEventArgs e)
         {
             loadData();
+        }
+
+        private void DataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            selectedId = selectedId = e.RowIndex != -1 ? (int)DataGrid.Rows[e.RowIndex].Cells[0].Value : -1;
+            showBtns();
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            TeacherDataPopup teacherDataPopup = new TeacherDataPopup(selectedId);
+            teacherDataPopup.FormClosed += TeacherDataPopup_FormClosed;
+            teacherDataPopup.ShowDialog();
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Are you sure, Do you really want to Delete this Record...?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    String query = $"DELETE FROM Teacher WHERE regNo={selectedId}";
+                    conn.SetData(query);
+                    if (MessageBox.Show("Record deleted succesfully", "Delete Teacher", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                    {
+                        selectedId = -1;
+                        loadData();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }

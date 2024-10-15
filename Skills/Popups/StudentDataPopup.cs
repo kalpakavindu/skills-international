@@ -14,7 +14,6 @@ namespace Skills.Popups
     public partial class StudentDataPopup : Form
     {
         private Database conn;
-        private int regNo;
         private int id;
 
         public StudentDataPopup(int id=-1)
@@ -23,14 +22,84 @@ namespace Skills.Popups
             this.id = id;
 
             InitializeComponent();
-            showBtns(id!=-1);
-            setRegNo();
+            loadData(id == -1);
+        }
 
-            // Set DateTimePicker Min-Max dates
-            int currentYear = (int)Convert.ToDecimal(DateTime.Now.ToString("yyyy"));
-            InputDOB.CustomFormat = "dd/MM/yyyy";
-            InputDOB.MinDate = DateTime.Parse($"{currentYear-20}/01/01");
-            InputDOB.MaxDate = DateTime.Parse($"{currentYear-10}/12/31");
+        private void loadData(Boolean newUser=false)
+        {
+            try 
+            {
+                // Set DateTimePicker Min-Max dates
+                int currentYear = (int)Convert.ToDecimal(DateTime.Now.ToString("yyyy"));
+                InputDOB.CustomFormat = "dd/MM/yyyy";
+                InputDOB.MinDate = DateTime.Parse($"{currentYear - 20}/01/01");
+                InputDOB.MaxDate = DateTime.Parse($"{currentYear - 10}/12/31");
+
+                // Set Action Button Visibility
+                BtnUpdate.Visible = !newUser;
+                BtnRegister.Visible = newUser;
+
+                if (!newUser)
+                {
+                    String query = $"SELECT * FROM Student WHERE regNo={id}";
+                    DataTable res = conn.GetData(query);
+                    if (res.Rows.Count > 0)
+                    {
+                        InputRegNo.Items.Insert(0, id);
+                        InputFirstName.Text = (String)res.Rows[0]["firstName"];
+                        InputLastName.Text = (String)res.Rows[0]["lastName"];
+                        InputDOB.Value = (DateTime)res.Rows[0]["dateOfBirth"];
+                        InputAddress.Text = (String)res.Rows[0]["address"];
+                        InputEmail.Text = (String)res.Rows[0]["email"];
+                        InputHomePhone.Text = res.Rows[0]["homePhone"].ToString();
+                        InputMobilePhone.Text = res.Rows[0]["mobilePhone"].ToString();
+                        InputParentName.Text = (String)res.Rows[0]["parentName"];
+                        InputParentNIC.Text = (String)res.Rows[0]["parentNic"];
+                        InputParentContact.Text = res.Rows[0]["parentPhone"].ToString();
+
+                        if ((String)res.Rows[0]["gender"] == "Male")
+                        {
+                            InputGender0.Checked = true;
+                            InputGender1.Checked = false;
+                        }
+                        else
+                        {
+                            InputGender0.Checked = false;
+                            InputGender1.Checked = true;
+                        }
+                    }
+                    else
+                    {
+                        if(MessageBox.Show($"Student {id} not registered in the database","Student not found",MessageBoxButtons.OK,MessageBoxIcon.Error) == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    // Get last Student RegNo
+                    String query = "SELECT TOP 1 regNo FROM Student ORDER BY regNo DESC";
+                    DataTable res = conn.GetData(query);
+                    if (res.Rows.Count > 0)
+                    {
+                        InputRegNo.Items.Insert(0, (int)(res.Rows[0]["regNo"]) + 1);
+                    }
+                    else
+                    {
+                        InputRegNo.Items.Insert(0, 240001);
+                    }
+                }
+
+                InputRegNo.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
         }
 
         private Boolean validateForm()
@@ -102,49 +171,8 @@ namespace Skills.Popups
             InputDOB.Value = InputDOB.MaxDate;
             InputGender0.Checked = true;
             InputGender1.Checked = false;
-            setRegNo();
+            loadData(id == -1);
             InputFirstName.Focus();
-        }
-
-        private void showBtns(Boolean edit = false)
-        {
-            BtnUpdate.Visible = edit;
-            BtnRegister.Visible = !edit;
-        }
-
-        private void setRegNo()
-        {
-            InputRegNo.Items.Clear();
-            if (id == -1)
-            {
-                try
-                {
-                    // Get last Student RegNo
-                    String query = "SELECT TOP 1 regNo FROM Student ORDER BY regNo DESC";
-                    DataTable res = conn.GetData(query);
-                    if (res.Rows.Count > 0)
-                    {
-                        InputRegNo.Items.Insert(0,(int)(res.Rows[0]["regNo"]) + 1);
-                    }
-                    else
-                    {
-                        InputRegNo.Items.Insert(0, 240001);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
-                    {
-                        Application.Exit();
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                InputRegNo.Items.Insert(0, id);
-            }
-            InputRegNo.SelectedIndex = 0;
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
