@@ -217,7 +217,7 @@ namespace Skills.Popups
                 {
                     if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
                     {
-                        Application.Exit();
+                        this.Close();
                     }
                 }
             }

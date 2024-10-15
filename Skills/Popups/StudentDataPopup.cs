@@ -25,7 +25,7 @@ namespace Skills.Popups
             loadData(id == -1);
         }
 
-        private void loadData(Boolean newUser=false)
+        private void loadData(Boolean newUser=true)
         {
             try 
             {
@@ -41,6 +41,7 @@ namespace Skills.Popups
 
                 if (!newUser)
                 {
+                    InputRegNo.Enabled = false;
                     String query = $"SELECT * FROM Student WHERE regNo={id}";
                     DataTable res = conn.GetData(query);
                     if (res.Rows.Count > 0)
@@ -219,7 +220,53 @@ namespace Skills.Popups
                 {
                     if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
                     {
-                        Application.Exit();
+                        this.Close();
+                    }
+                }
+            }
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            if (validateForm())
+            {
+                try
+                {
+                    String gender = "Male";
+                    if (InputGender1.Checked == true)
+                    {
+                        gender = "Female";
+                    }
+
+                    String query = "UPDATE Student SET firstName='{0}',lastName='{1}',dateOfBirth='{2}',gender='{3}',address='{4}',email='{5}',mobilePhone={6},homePhone={7},parentName='{8}',parentNic='{9}',parentPhone={10} WHERE regNo={11}";
+
+                    query = String.Format(
+                        query,
+                        InputFirstName.Text,
+                        InputLastName.Text,
+                        InputDOB.Value.ToString("yyyy-MM-dd"),
+                        gender,
+                        InputAddress.Text,
+                        InputEmail.Text,
+                        InputMobilePhone.Text,
+                        InputHomePhone.Text,
+                        InputParentName.Text,
+                        InputParentNIC.Text,
+                        InputParentContact.Text,
+                        id
+                    );
+
+                    conn.SetData(query);
+                    if(MessageBox.Show("Record updated succesfully","Update Student",MessageBoxButtons.OK,MessageBoxIcon.Information) == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (MessageBox.Show(ex.Message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                    {
+                        this.Close();
                     }
                 }
             }

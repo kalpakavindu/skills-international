@@ -120,6 +120,7 @@
             this.BtnUpdate.TabIndex = 11;
             this.BtnUpdate.Text = "Update";
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnRegister
             // 
