@@ -14,6 +14,7 @@ namespace Skills.Panels
     public partial class ClassesPanel : Form
     {
         private Database conn;
+
         public ClassesPanel()
         {
             conn = new Database();

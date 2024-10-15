@@ -14,6 +14,7 @@ namespace Skills.Panels
     public partial class TeachersPanel : Form
     {
         private Database conn;
+
         public TeachersPanel()
         {
             conn = new Database();
@@ -85,6 +86,7 @@ namespace Skills.Panels
             teacherDataPopup.FormClosed += TeacherDataPopup_FormClosed;
             teacherDataPopup.ShowDialog();
         }
+
         private void TeacherDataPopup_FormClosed(object sender, FormClosedEventArgs e)
         {
             loadData();

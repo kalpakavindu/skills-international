@@ -37,10 +37,6 @@
             this.LabelEmail = new System.Windows.Forms.Label();
             this.InputAddress = new System.Windows.Forms.TextBox();
             this.LabelAddress = new System.Windows.Forms.Label();
-            this.BtnClear = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
-            this.BtnUpdate = new System.Windows.Forms.Button();
-            this.BtnRegister = new System.Windows.Forms.Button();
             this.BasicDataWrapper = new System.Windows.Forms.GroupBox();
             this.InputCivilStatus = new System.Windows.Forms.ComboBox();
             this.LabelCivilStatus = new System.Windows.Forms.Label();
@@ -57,6 +53,9 @@
             this.LabelFirstName = new System.Windows.Forms.Label();
             this.LabelRegNo = new System.Windows.Forms.Label();
             this.RegistrationFormWrapper = new System.Windows.Forms.GroupBox();
+            this.BtnClear = new System.Windows.Forms.Button();
+            this.BtnUpdate = new System.Windows.Forms.Button();
+            this.BtnRegister = new System.Windows.Forms.Button();
             this.AppName = new System.Windows.Forms.Label();
             this.ContactDataWrapper.SuspendLayout();
             this.BasicDataWrapper.SuspendLayout();
@@ -153,46 +152,6 @@
             this.LabelAddress.TabIndex = 0;
             this.LabelAddress.Text = "Address";
             // 
-            // BtnClear
-            // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnClear.Location = new System.Drawing.Point(481, 493);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(75, 23);
-            this.BtnClear.TabIndex = 13;
-            this.BtnClear.Text = "Clear";
-            this.BtnClear.UseVisualStyleBackColor = true;
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnDelete.Location = new System.Drawing.Point(481, 493);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(75, 23);
-            this.BtnDelete.TabIndex = 12;
-            this.BtnDelete.Text = "Delete";
-            this.BtnDelete.UseVisualStyleBackColor = true;
-            // 
-            // BtnUpdate
-            // 
-            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnUpdate.Location = new System.Drawing.Point(31, 493);
-            this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.BtnUpdate.TabIndex = 11;
-            this.BtnUpdate.Text = "Update";
-            this.BtnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // BtnRegister
-            // 
-            this.BtnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnRegister.Location = new System.Drawing.Point(31, 493);
-            this.BtnRegister.Name = "BtnRegister";
-            this.BtnRegister.Size = new System.Drawing.Size(75, 23);
-            this.BtnRegister.TabIndex = 10;
-            this.BtnRegister.Text = "Register";
-            this.BtnRegister.UseVisualStyleBackColor = true;
-            // 
             // BasicDataWrapper
             // 
             this.BasicDataWrapper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -222,10 +181,6 @@
             // InputCivilStatus
             // 
             this.InputCivilStatus.FormattingEnabled = true;
-            this.InputCivilStatus.Items.AddRange(new object[] {
-            "Single",
-            "Married",
-            "Divorced"});
             this.InputCivilStatus.Location = new System.Drawing.Point(138, 216);
             this.InputCivilStatus.Name = "InputCivilStatus";
             this.InputCivilStatus.Size = new System.Drawing.Size(126, 24);
@@ -372,27 +327,56 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RegistrationFormWrapper.Controls.Add(this.BtnClear);
-            this.RegistrationFormWrapper.Controls.Add(this.BtnDelete);
             this.RegistrationFormWrapper.Controls.Add(this.BtnUpdate);
             this.RegistrationFormWrapper.Controls.Add(this.BtnRegister);
             this.RegistrationFormWrapper.Controls.Add(this.BasicDataWrapper);
             this.RegistrationFormWrapper.Controls.Add(this.ContactDataWrapper);
             this.RegistrationFormWrapper.Controls.Add(this.InputRegNo);
             this.RegistrationFormWrapper.Controls.Add(this.LabelRegNo);
-            this.RegistrationFormWrapper.Location = new System.Drawing.Point(11, 34);
+            this.RegistrationFormWrapper.Location = new System.Drawing.Point(10, 48);
             this.RegistrationFormWrapper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RegistrationFormWrapper.Name = "RegistrationFormWrapper";
             this.RegistrationFormWrapper.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.RegistrationFormWrapper.Size = new System.Drawing.Size(587, 531);
+            this.RegistrationFormWrapper.Size = new System.Drawing.Size(587, 553);
             this.RegistrationFormWrapper.TabIndex = 5;
             this.RegistrationFormWrapper.TabStop = false;
             this.RegistrationFormWrapper.Text = "Teacher Registration";
+            // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnClear.Location = new System.Drawing.Point(31, 499);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(75, 35);
+            this.BtnClear.TabIndex = 16;
+            this.BtnClear.Text = "Clear";
+            this.BtnClear.UseVisualStyleBackColor = true;
+            // 
+            // BtnUpdate
+            // 
+            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnUpdate.Location = new System.Drawing.Point(481, 499);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.Size = new System.Drawing.Size(75, 35);
+            this.BtnUpdate.TabIndex = 15;
+            this.BtnUpdate.Text = "Update";
+            this.BtnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // BtnRegister
+            // 
+            this.BtnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRegister.Location = new System.Drawing.Point(481, 499);
+            this.BtnRegister.Name = "BtnRegister";
+            this.BtnRegister.Size = new System.Drawing.Size(75, 35);
+            this.BtnRegister.TabIndex = 14;
+            this.BtnRegister.Text = "Register";
+            this.BtnRegister.UseVisualStyleBackColor = true;
             // 
             // AppName
             // 
             this.AppName.AutoSize = true;
             this.AppName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AppName.Location = new System.Drawing.Point(204, 7);
+            this.AppName.Location = new System.Drawing.Point(185, 9);
             this.AppName.Name = "AppName";
             this.AppName.Size = new System.Drawing.Size(255, 31);
             this.AppName.TabIndex = 4;
@@ -402,14 +386,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 590);
+            this.ClientSize = new System.Drawing.Size(608, 612);
             this.Controls.Add(this.RegistrationFormWrapper);
             this.Controls.Add(this.AppName);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(624, 629);
+            this.MaximumSize = new System.Drawing.Size(624, 651);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(624, 629);
             this.Name = "TeacherDataPopup";
@@ -434,10 +418,6 @@
         private System.Windows.Forms.Label LabelEmail;
         private System.Windows.Forms.TextBox InputAddress;
         private System.Windows.Forms.Label LabelAddress;
-        private System.Windows.Forms.Button BtnClear;
-        private System.Windows.Forms.Button BtnDelete;
-        private System.Windows.Forms.Button BtnUpdate;
-        private System.Windows.Forms.Button BtnRegister;
         private System.Windows.Forms.GroupBox BasicDataWrapper;
         private System.Windows.Forms.RadioButton InputGender1;
         private System.Windows.Forms.RadioButton InputGender0;
@@ -455,5 +435,8 @@
         private System.Windows.Forms.Label LabelCivilStatus;
         private System.Windows.Forms.TextBox InputNIC;
         private System.Windows.Forms.Label LabelNIC;
+        private System.Windows.Forms.Button BtnClear;
+        private System.Windows.Forms.Button BtnUpdate;
+        private System.Windows.Forms.Button BtnRegister;
     }
 }

@@ -12,9 +12,21 @@ namespace Skills.Popups
 {
     public partial class ClassDataPopup : Form
     {
-        public ClassDataPopup()
+        private Database conn;
+        private int id;
+
+        public ClassDataPopup(int id=-1)
         {
+            conn = new Database();
+            this.id = id;
             InitializeComponent();
+            showBtns(id != -1);
+        }
+
+        private void showBtns(Boolean edit = false)
+        {
+            BtnUpdate.Visible = edit;
+            BtnRegister.Visible = !edit;
         }
     }
 }

@@ -32,7 +32,6 @@
             this.AppName = new System.Windows.Forms.Label();
             this.RegistrationFormWrapper = new System.Windows.Forms.GroupBox();
             this.BtnClear = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.BtnRegister = new System.Windows.Forms.Button();
             this.BasicDataWrapper = new System.Windows.Forms.GroupBox();
@@ -73,7 +72,7 @@
             // 
             this.AppName.AutoSize = true;
             this.AppName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AppName.Location = new System.Drawing.Point(204, 7);
+            this.AppName.Location = new System.Drawing.Point(192, 9);
             this.AppName.Name = "AppName";
             this.AppName.Size = new System.Drawing.Size(255, 31);
             this.AppName.TabIndex = 0;
@@ -85,7 +84,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RegistrationFormWrapper.Controls.Add(this.BtnClear);
-            this.RegistrationFormWrapper.Controls.Add(this.BtnDelete);
             this.RegistrationFormWrapper.Controls.Add(this.BtnUpdate);
             this.RegistrationFormWrapper.Controls.Add(this.BtnRegister);
             this.RegistrationFormWrapper.Controls.Add(this.BasicDataWrapper);
@@ -93,7 +91,7 @@
             this.RegistrationFormWrapper.Controls.Add(this.ContactDataWrapper);
             this.RegistrationFormWrapper.Controls.Add(this.InputRegNo);
             this.RegistrationFormWrapper.Controls.Add(this.LabelRegNo);
-            this.RegistrationFormWrapper.Location = new System.Drawing.Point(11, 34);
+            this.RegistrationFormWrapper.Location = new System.Drawing.Point(11, 48);
             this.RegistrationFormWrapper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RegistrationFormWrapper.Name = "RegistrationFormWrapper";
             this.RegistrationFormWrapper.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -104,40 +102,31 @@
             // 
             // BtnClear
             // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnClear.Location = new System.Drawing.Point(481, 549);
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnClear.Location = new System.Drawing.Point(31, 543);
             this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(75, 23);
+            this.BtnClear.Size = new System.Drawing.Size(75, 35);
             this.BtnClear.TabIndex = 13;
             this.BtnClear.Text = "Clear";
             this.BtnClear.UseVisualStyleBackColor = true;
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnDelete.Location = new System.Drawing.Point(481, 549);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(75, 23);
-            this.BtnDelete.TabIndex = 12;
-            this.BtnDelete.Text = "Delete";
-            this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // BtnUpdate
             // 
-            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnUpdate.Location = new System.Drawing.Point(31, 549);
+            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnUpdate.Location = new System.Drawing.Point(481, 543);
             this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.BtnUpdate.Size = new System.Drawing.Size(75, 35);
             this.BtnUpdate.TabIndex = 11;
             this.BtnUpdate.Text = "Update";
             this.BtnUpdate.UseVisualStyleBackColor = true;
             // 
             // BtnRegister
             // 
-            this.BtnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnRegister.Location = new System.Drawing.Point(31, 549);
+            this.BtnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRegister.Location = new System.Drawing.Point(481, 543);
             this.BtnRegister.Name = "BtnRegister";
-            this.BtnRegister.Size = new System.Drawing.Size(75, 23);
+            this.BtnRegister.Size = new System.Drawing.Size(75, 35);
             this.BtnRegister.TabIndex = 10;
             this.BtnRegister.Text = "Register";
             this.BtnRegister.UseVisualStyleBackColor = true;
@@ -201,15 +190,15 @@
             // 
             this.InputDOB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.InputDOB.CustomFormat = "dd/mm/yyyy";
+            this.InputDOB.CustomFormat = "dd/MM/yyyy";
             this.InputDOB.Location = new System.Drawing.Point(138, 98);
             this.InputDOB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InputDOB.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
-            this.InputDOB.MinDate = new System.DateTime(2004, 1, 1, 0, 0, 0, 0);
+            this.InputDOB.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.InputDOB.Name = "InputDOB";
             this.InputDOB.Size = new System.Drawing.Size(251, 22);
             this.InputDOB.TabIndex = 5;
-            this.InputDOB.Value = new System.DateTime(2024, 10, 8, 0, 0, 0, 0);
+            this.InputDOB.Value = new System.DateTime(2015, 12, 31, 0, 0, 0, 0);
             // 
             // LabelDOB
             // 
@@ -287,7 +276,7 @@
             this.InputParentContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.InputParentContact.Location = new System.Drawing.Point(138, 97);
             this.InputParentContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.InputParentContact.MaxLength = 50;
+            this.InputParentContact.MaxLength = 20;
             this.InputParentContact.Name = "InputParentContact";
             this.InputParentContact.Size = new System.Drawing.Size(126, 22);
             this.InputParentContact.TabIndex = 6;
@@ -368,7 +357,7 @@
             this.InputHomePhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.InputHomePhone.Location = new System.Drawing.Point(394, 122);
             this.InputHomePhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.InputHomePhone.MaxLength = 50;
+            this.InputHomePhone.MaxLength = 20;
             this.InputHomePhone.Name = "InputHomePhone";
             this.InputHomePhone.Size = new System.Drawing.Size(126, 22);
             this.InputHomePhone.TabIndex = 8;
@@ -388,7 +377,7 @@
             this.InputMobilePhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.InputMobilePhone.Location = new System.Drawing.Point(138, 122);
             this.InputMobilePhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.InputMobilePhone.MaxLength = 50;
+            this.InputMobilePhone.MaxLength = 20;
             this.InputMobilePhone.Name = "InputMobilePhone";
             this.InputMobilePhone.Size = new System.Drawing.Size(126, 22);
             this.InputMobilePhone.TabIndex = 6;
@@ -474,6 +463,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(624, 687);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(624, 687);
             this.Name = "StudentDataPopup";
@@ -524,7 +514,6 @@
         private System.Windows.Forms.TextBox InputParentName;
         private System.Windows.Forms.Label LabelParentName;
         private System.Windows.Forms.Button BtnRegister;
-        private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnUpdate;
         private System.Windows.Forms.Button BtnClear;
     }

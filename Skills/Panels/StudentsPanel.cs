@@ -88,6 +88,7 @@ namespace Skills.Panels
             studentDataPopup.FormClosed += StudentDataPopup_FormClosed;
             studentDataPopup.ShowDialog();
         }
+
         private void StudentDataPopup_FormClosed(object sender, FormClosedEventArgs e)
         {
             loadData();
