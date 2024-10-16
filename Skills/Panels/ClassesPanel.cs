@@ -45,8 +45,20 @@ namespace Skills.Panels
                 {
                     String q = $"SELECT teacherId FROM ClassToTeacher WHERE classId={(int)r["id"]}";
                     DataTable thRes = conn.GetData(q);
-                    q = $"SELECT firstName,lastName FROM Teacher WHERE regNo={(int)thRes.Rows[0]["teacherId"]}";
-                    DataTable thData = conn.GetData(q);
+                    DataTable thData;
+                    if (thRes.Rows.Count > 0)
+                    {
+                        q = $"SELECT firstName,lastName FROM Teacher WHERE regNo={(int)thRes.Rows[0]["teacherId"]}";
+                        thData = conn.GetData(q);
+                    }
+                    else
+                    {
+                        thData = new DataTable();
+                        thData.Columns.Add("firstName", typeof(String));
+                        thData.Columns.Add("lastName", typeof(String));
+                        thData.Rows.Add("Not", "assigned");
+                    }
+
                     q = $"SELECT studentId FROM ClassToStudent WHERE classId={(int)r["id"]}";
                     DataTable stCountData = conn.GetData(q);
 

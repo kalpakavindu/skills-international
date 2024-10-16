@@ -31,7 +31,7 @@ GO
 CREATE TABLE [Class] (
   [id] int PRIMARY KEY IDENTITY(1, 1),
   [name] varchar(50) UNIQUE NOT NULL,
-  [batch] int NOT NULL
+  [year] int NOT NULL
 )
 GO
 
