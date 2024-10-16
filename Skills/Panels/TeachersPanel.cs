@@ -46,8 +46,8 @@ namespace Skills.Panels
 
                 foreach(DataRow r in res.Rows)
                 {
-                    String q = $"SELECT id FROM Class WHERE teacherId={(int)r["regNo"]}";
-                    DataTable clData = conn.GetData(q);
+                    String q = $"SELECT classId FROM ClassToTeacher WHERE teacherId={(int)r["regNo"]}";
+                    DataTable clCountData = conn.GetData(q);
 
                     src.Rows.Add(
                         (int)r["regNo"],
@@ -59,7 +59,7 @@ namespace Skills.Panels
                         (String)r["email"],
                         (String)r["address"],
                         Convert.ToUInt64(r["mobilePhone"]),
-                        clData.Rows.Count
+                        clCountData.Rows.Count
                     );
                 }
 
@@ -113,7 +113,12 @@ namespace Skills.Panels
             {
                 if (MessageBox.Show("Are you sure, Do you really want to Delete this Record...?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    String query = $"DELETE FROM Teacher WHERE regNo={selectedId}";
+                    // Clean foreign keys
+                    String query = $"DELETE FROM ClassToTeacher WHERE teacherId={selectedId}";
+                    conn.SetData(query);
+
+                    // Delete the Teacher
+                    query = $"DELETE FROM Teacher WHERE regNo={selectedId}";
                     conn.SetData(query);
                     if (MessageBox.Show("Record deleted succesfully", "Delete Teacher", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                     {

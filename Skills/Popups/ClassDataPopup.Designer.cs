@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.RegistrationFormWrapper = new System.Windows.Forms.GroupBox();
+            this.BtnClear = new System.Windows.Forms.Button();
+            this.BtnUpdate = new System.Windows.Forms.Button();
+            this.BtnRegister = new System.Windows.Forms.Button();
             this.InputName = new System.Windows.Forms.TextBox();
             this.InputTeacher = new System.Windows.Forms.ComboBox();
             this.LabelName = new System.Windows.Forms.Label();
             this.LabelTeacher = new System.Windows.Forms.Label();
             this.AppName = new System.Windows.Forms.Label();
-            this.BtnClear = new System.Windows.Forms.Button();
-            this.BtnUpdate = new System.Windows.Forms.Button();
-            this.BtnRegister = new System.Windows.Forms.Button();
             this.RegistrationFormWrapper.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,39 @@
             this.RegistrationFormWrapper.TabIndex = 7;
             this.RegistrationFormWrapper.TabStop = false;
             this.RegistrationFormWrapper.Text = "Class Registration";
+            // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnClear.Location = new System.Drawing.Point(31, 135);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(75, 35);
+            this.BtnClear.TabIndex = 20;
+            this.BtnClear.Text = "Clear";
+            this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // BtnUpdate
+            // 
+            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnUpdate.Location = new System.Drawing.Point(339, 135);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.Size = new System.Drawing.Size(75, 35);
+            this.BtnUpdate.TabIndex = 19;
+            this.BtnUpdate.Text = "Update";
+            this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
+            // 
+            // BtnRegister
+            // 
+            this.BtnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRegister.Location = new System.Drawing.Point(339, 135);
+            this.BtnRegister.Name = "BtnRegister";
+            this.BtnRegister.Size = new System.Drawing.Size(75, 35);
+            this.BtnRegister.TabIndex = 18;
+            this.BtnRegister.Text = "Register";
+            this.BtnRegister.UseVisualStyleBackColor = true;
+            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
             // InputName
             // 
@@ -106,36 +139,6 @@
             this.AppName.Size = new System.Drawing.Size(255, 31);
             this.AppName.TabIndex = 6;
             this.AppName.Text = "Skills International";
-            // 
-            // BtnClear
-            // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnClear.Location = new System.Drawing.Point(31, 135);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(75, 35);
-            this.BtnClear.TabIndex = 20;
-            this.BtnClear.Text = "Clear";
-            this.BtnClear.UseVisualStyleBackColor = true;
-            // 
-            // BtnUpdate
-            // 
-            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnUpdate.Location = new System.Drawing.Point(339, 135);
-            this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(75, 35);
-            this.BtnUpdate.TabIndex = 19;
-            this.BtnUpdate.Text = "Update";
-            this.BtnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // BtnRegister
-            // 
-            this.BtnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnRegister.Location = new System.Drawing.Point(339, 135);
-            this.BtnRegister.Name = "BtnRegister";
-            this.BtnRegister.Size = new System.Drawing.Size(75, 35);
-            this.BtnRegister.TabIndex = 18;
-            this.BtnRegister.Text = "Register";
-            this.BtnRegister.UseVisualStyleBackColor = true;
             // 
             // ClassDataPopup
             // 

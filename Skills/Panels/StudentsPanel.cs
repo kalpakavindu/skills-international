@@ -48,10 +48,12 @@ namespace Skills.Panels
 
                 foreach(DataRow r in res.Rows)
                 {
+                    query = $"SELECT classId FROM ClassToStudent WHERE studentId={(int)r["regNo"]}";
+                    DataTable clRes = conn.GetData(query);
                     DataTable clData = new DataTable();
-                    if (r["classId"] != DBNull.Value)
+                    if (clRes.Rows.Count > 0)
                     {
-                        String q = $"SELECT name FROM Class WHERE id={(int)r["classId"]}";
+                        String q = $"SELECT name FROM Class WHERE id={(int)clRes.Rows[0]["classId"]}";
                         clData = conn.GetData(q);
                     }
                     else
@@ -125,7 +127,12 @@ namespace Skills.Panels
             {
                 if (MessageBox.Show("Are you sure, Do you really want to Delete this Record...?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    String query = $"DELETE FROM Student WHERE regNo={selectedId}";
+                    // Clear foreign keys
+                    String query = $"DELETE FROM ClassToStudent WHERE studentId={selectedId}";
+                    conn.SetData(query);
+
+                    // Delete Student
+                    query = $"DELETE FROM Student WHERE regNo={selectedId}";
                     conn.SetData(query);
                     if (MessageBox.Show("Record deleted succesfully", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                     {
