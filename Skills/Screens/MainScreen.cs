@@ -86,10 +86,17 @@ namespace Skills.Screens
 
         private void BtnLogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure, Do you really want to Exit...?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure, Do you really want to Logout...?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Application.Exit();
+                LoginScreen loginScreen = new LoginScreen();
+                loginScreen.FormClosed += LoginForm_FormClosed;
+                this.Hide();
+                loginScreen.Show();
             }
+        }
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
